@@ -1,0 +1,35 @@
+section {
+    position: relative;
+    top: 40px;
+    padding-bottom: 30px;
+    /* background-color: springgreen; */
+}
+
+section aside {
+    float: left;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 80px;
+    width: 180px;
+    height: 400px;
+    border: 1px solid #ccc;
+    box-shadow: 0px 1px 6px rgba(0, 0, 0, .3);
+}
+
+section aside ul li {
+    height: 70px;
+    border-bottom: 1px solid #ccc;
+    line-height: 70px;
+    text-align: center;
+    font-size: 15px;
+}
+
+section aside ul li:last-child {
+    border-bottom: none;
+}
+
+section article {
+    float: right;
+    width: 850px;
+    /* background-color: olivedrab; */
+}
