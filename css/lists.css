@@ -1,0 +1,31 @@
+header h1 {
+    display: inline-block;
+}
+
+header .lists {
+    float: right;
+    text-align: center;
+}
+
+section .a_post {
+    position: relative;
+    margin: 20px 100px;
+    width: 900px;
+    height: 100px;
+    padding: 20px 20px;
+    background-color: #fff;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, .3);
+    border-radius: 10px;
+}
+
+section .a_post:hover {
+    box-shadow: 0px 1px 8px rgba(0, 0, 0, .3);
+    transition: all,1s;
+}
+
+section .a_post .date {
+    position: absolute;
+    right: 20px;
+    bottom: 10px;
+    color: #aaa;
+}
