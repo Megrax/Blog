@@ -10,8 +10,8 @@ section aside {
     position: -webkit-sticky;
     position: sticky;
     top: 80px;
-    width: 180px;
-    height: 400px;
+    width: 140px;
+    height: 380px;
     border: 1px solid #ccc;
     box-shadow: 0px 1px 6px rgba(0, 0, 0, .3);
 }
@@ -29,7 +29,113 @@ section aside ul li:last-child {
 }
 
 section article {
+    float: left;
+    margin-left: 50px;
+    width: 770px;
+}
+
+section .home {
     float: right;
-    width: 850px;
-    /* background-color: olivedrab; */
+    position: -webkit-sticky;
+    position: sticky;
+    right: 50px;
+    top: 600px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: #fff;
+}
+
+.comment {
+    /* background-color: blue; */
+}
+
+.comment .submit_wrapper {
+    position: relative;
+    margin: 0 auto;
+    width: 740px;
+    height: 280px;
+    /* background-color: yellow; */
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+.comment .info input {
+    width: 332px;
+    height: 57px;
+    font-size: 17px;
+    caret-color: #ccc;
+    border-bottom: 3px dashed #ccc;
+    padding: 3px;
+}
+
+.comment .info input:focus {
+    border-bottom: 3px dashed orange;
+}
+
+.comment .info input:first-child {
+    margin-left: 31px;
+}
+
+.comment .comm textarea {
+    display: block;
+    margin-left: 31px;
+    padding: 3px;
+    resize: none;
+    border-bottom: 3px dashed #ccc;
+    caret-color: #ccc;
+    width: 668px;
+    height: 160px;
+    font-size: 17px;
+}
+
+.comment .comm textarea:focus {
+    border-bottom: 3px dashed orange;
+}
+
+.comment .submit {
+    position: absolute;
+    bottom: 13px;
+    right: 38px;
+    width: 72px;
+    height: 36px;
+    cursor: pointer;
+    font-size: 17px;
+}
+
+.comment .comments {
+    margin-top: 20px;
+    padding: 10px 0;
+    /* background-color: red; */
+}
+
+.comment .a_comment {
+    margin: 20px auto;
+    width: 800px;
+    /* height: 220px; */
+    padding: 20px 20px;
+    background-color: #fff;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, .3);
+    border-radius: 10px;
+}
+
+.comment .a_comment:hover {
+    box-shadow: 0px 1px 8px rgba(0, 0, 0, .3);
+    transition: all,.7s;
+}
+
+.comment .a_comment .com_id {
+    display: inline;
+    font-size: 18px;
+}
+
+.comment .a_comment .com_date {
+    float: right;
+    color: #bbb;
+}
+
+.comment .a_comment .com_content {
+    margin: 20px 20px;
+    text-indent: 2em;
 }

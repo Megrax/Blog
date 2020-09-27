@@ -1,18 +1,23 @@
 @font-face {
-    font-family: 'Zilla Slab Regular';
+  font-family: 'Zilla Slab Regular';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/ZillaSlab-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Zilla Slab SemiBold';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/ZillaSlab-SemiBold.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'NotoSerifSC-Regular';
     font-style: normal;
     font-weight: 400;
-    src: url('../fonts/ZillaSlab-Regular.woff2') format('woff2');
-  }
-
-  @font-face {
-    font-family: 'Zilla Slab SemiBold';
-    font-style: normal;
-    font-weight: 400;
-    src: url('../fonts/ZillaSlab-SemiBold.woff2') format('woff2');
-  }
-
-
+    src: url(../fonts/NotoSerifSC-Regular.otf) format('OpenType');
+}
 
 /* 所有标签的内外边距清零 */
 * {
@@ -58,8 +63,9 @@ a:hover {
 }
 
 button,
-input {
-    font-family: Microsoft YaHei, Helvetica, Heiti SC, tahoma, arial, Hiragino Sans GB, "\5B8B\4F53", sans-serif;
+input,
+textarea {
+    font-family: NotoSerifSC-Regular, Microsoft YaHei, Helvetica, Heiti SC, tahoma, arial, Hiragino Sans GB, "\5B8B\4F53", sans-serif;
     border: 0;
     outline: none;
 }
@@ -68,7 +74,7 @@ body {
     /* CSS3 抗锯齿形 让文字显示的更加清晰 */
     -webkit-font-smoothing: antialiased;
     background-color: #fff;
-    font: 12px/1.5 Microsoft YaHei, Helvetica, Heiti SC, tahoma, arial, Hiragino Sans GB, "\5B8B\4F53", sans-serif;
+    font: 15px/1.5 NotoSerifSC-Regular, Microsoft YaHei, Helvetica, Heiti SC, tahoma, arial, Hiragino Sans GB, "\5B8B\4F53", sans-serif;
 }
 
 .hide,
@@ -87,3 +93,16 @@ body {
 .clearfix {
     *zoom: 1;
 }
+
+::-webkit-input-placeholder {
+    color: #ccc;
+  }
+  :-moz-placeholder {/* Firefox 18- */
+    color: #ccc;
+  }
+  ::-moz-placeholder{/* Firefox 19+ */
+   color: #ccc;
+  }
+  :-ms-input-placeholder {
+    color: #ccc;
+  }
