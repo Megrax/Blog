@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="zh-CH">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Megrax's Blog</title>
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/footer.css">
+    <script src="js/main.js"></script>
+</head>
+
+<body>
+    <!-- 头部模块 -->
+    <header>
+        <h1>
+            <a href="#">Megrax's Blog</a>
+        </h1>
+    </header>
+
+    <!-- 中部导航栏模块 -->
+    <nav class="w">
+        <ul>
+            <li><a href="#">首页</a></li>
+            <li><a href="#">Lists</a></li>
+            <li><a href="#">Tags</a></li>
+            <li><a href="#">Links</a></li>
+            <li><a href="#">About Me</a></li>
+        </ul>
+    </nav>
+
+    <!-- 主体模块 -->
+    <section class="w clearfix">
+        <!-- 边栏模块 -->
+        <aside class="left">
+            <ul>
+                <li><a href="#">Tech</a></li>
+                <li><a href="#">Life</a></li>
+                <li><a href="#">Literature</a></li>
+                <li>访问信息统计</li>
+            </ul>
+        </aside>
+        <div class="article_wrapper">
+            <!-- 文章部分 -->
+            <article>
+                > Halo是一个基于Spring
+                Boot的开源博客框架，并且易于上手。这篇博客基本是官网安装指南的搬运，我把「安装」和「部署」的两篇文章合在一起，然后作了不大的改动，主要还是熟悉一下Markdown文档的写作🤣。要是对Halo博客搭建部署有疑问的话可以在文末留言喔。
+                >
+                >原文传送:[Halo安装指南](https://halo.run/archives/install-with-linux.html)
+
+                ***
+                ### 要求
+                1. 熟悉简单的Linux操作
+                2. 一台Linux服务器，这里用Centos 7.x的操作系统做演示
+                3. 拥有一个域名，并将服务器的IP成功解析到域名
+                4. 开放Halo的运行端口，默认端口为8090
+                ***
+                ### 推荐配置
+                - 操作系统：Centos 7.x
+                - 内存：512MB以上
+                ***
+                ### 配置服务器
+                #### 更新软件包
+                请确保服务器的软件包是最新的。
+                `sudo yum update -y`
+                #### 安装Java运行环境
+                > 已存在Java运行环境可略过这一步。
+                ```
+                # 安装 OpenJRE
+                sudo yum install java-1.8.0-openjdk -y
+
+                # 检测是否安装成功
+                java -version
+                ```
+                ***
+                ### 创建Halo用户
+
+                推荐创建一个低权限的用户运行`halo`：
+
+                ```
+                # 创建 halo 用户
+                sudo useradd -m halo
+                # 直接登录该用户
+                sudo su halo
+                ```
+                ***
+                ### 安装Halo
+
+                #### 下载配置文件
+
+                可使用Halo官网提供的配置文件。配置文件路径为`~/.halo/application.yaml`。
+
+                ```
+                # 下载配置文件到 ~/.halo 目录
+                curl -o ~/.halo/application.yaml --create-dirs https://dl.halo.run/config/application-template.yaml
+                ```
+                #### 修改配置文件
+
+                可以自己配置`Halo`的运行端口，以及数据库相关配置。
+
+                ```
+                # 使用 Vim 打开与修改配置文件
+                vim ~/.halo/application.yaml
+                ```
+
+                文件如下
+
+                ```
+                server:
+                port: 8090
+
+                # Response data gzip.
+                compression:
+                enabled: false
+                spring:
+                datasource:
+                # H2 database configuration.
+                driver-class-name: org.h2.Driver
+                url: jdbc:h2:file:~/.halo/db/halo
+                username: admin
+                password: 123456
+
+                # MySQL database configuration.
+                # driver-class-name: com.mysql.cj.jdbc.Driver
+                # url:
+                jdbc:mysql://127.0.0.1:3306/halodb?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+                # username: root
+                # password: 123456
+
+                # H2 database console configuration.
+                h2:
+                console:
+                settings:
+                web-allow-others: false
+                path: /h2-console
+                enabled: false
+
+                halo:
+                # Your admin client path is https://your-domain/{admin-path}
+                admin-path: admin
+
+                # memory or level
+                cache: memory
+                ```
+
+                1. 如需自定义端口，可直接修改`server`下的`port`对应的数字。
+                2. 默认使用的数据库是`H2 Database`，这是一种嵌入式的数据库，使用起来非常方便。需要注意的是，默认的用户名和密码为`admin`和`123456`，请修改并保存。
+                3. 如果需要使用 `MySQL` 数据库，需要将 `H2 Database` 的所有相关配置都注释掉，并取消 `MySQL` 的相关配置。另外，`MySQL` 的默认数据库名为 `halodb`，请自行配置
+                `MySQL` 并创建数据库，以及修改配置文件中的用户名和密码。
+                4. `h2` 节点为 `H2 Database` 的控制台配置，默认是关闭的，如需使用请将 `h2.console.settings.web-allow-others` 和
+                `h2.console.enabled`
+                设置为 `true`。控制台地址即为 `域名/h2-console`。注意：非紧急情况，不建议开启该配置。
+                5. `server.compression.enabled` 为 `Gzip` 功能配置，如有需要请设置为 `true`，需要注意的是，如果你使用 `Nginx` 或者 `Caddy`
+                进行反向代理的话，默认是有开启 `Gzip` 的，所以这里可以保持默认。
+                6. `halo.admin-path` 为后台管理的根路径，默认为 `admin`，如果你害怕别人猜出来默认的 `admin`（就算猜出来，对方什么都做不了），请自行设置。仅支持一级，且前后不带 `/`。
+                7. `halo.cache` 为系统缓存形式的配置，可选 `memory` 和 `level`，默认为 `memory`，将数据缓存到内存，使用该方式的话，重启应用会导致缓存清空。如果选择
+                `level`，则会将数据缓存到磁盘，重启不会清空缓存。如不知道如何选择，建议默认。
+
+                注意：
+
+                使用 MySQL 之前，必须要先新建一个 `halodb` 数据库，MySQL 版本需 5.7 以上。
+
+                ```sql
+                create database halodb character set utf8mb4 collate utf8mb4_bin;
+                ```
+
+                #### 运行Halo
+
+                Halo 的整个应用程序只有一个 Jar 包，且不包含用户的任何配置，它放在任何目录都是可行的。需要注意的是，Halo 的整个额外文件全部存放在 `~/.halo` 目录下，包括
+                `application.yaml（用户配置文件）`，`template/themes（主题目录）`，`upload（附件上传目录）`，`halo.db.mv（数据库文件）`。一定要保证 `~/.halo`
+                的存在，你博客的所有资料可都存在里面。所以你完全不需要担心安装包的安危，它仅仅是个服务而已。运行Halo时注意需先退出Halo用户，进入一个拥有管理员权限的用户下。
+
+                ```
+                # 查看当前登录用户
+                whoami
+
+                # 退出 halo 登录，进入一个有管理员权限的用户
+                su xxx 或者直接 exit
+                ```
+
+                运行Halo
+
+                ```
+                # 下载最新的 Halo 安装包，{{version}} 为版本号，不带 v，更多下载地址请访问 https://halo.run/archives/download.html
+                wget https://dl.halo.run/release/halo-{{version}}.jar -O halo-latest.jar
+
+                # 启动测试
+                java -jar halo-latest.jar
+                ```
+
+                (2020.8.9 Halo的最新版本为1.3.2)
+
+                看到以下日志输出，则说明启动成功。
+
+                ```
+                run.halo.app.listener.StartedListener : Halo started at http://127.0.0.1:8090
+                run.halo.app.listener.StartedListener : Halo admin started at http://127.0.0.1:8090/admin
+                run.halo.app.listener.StartedListener : Halo has started successfully!
+                ```
+
+                不过以上的启动仅仅为测试 Halo 是否可以正常运行，如果我们关闭 ssh 连接，Halo 也将被关闭。
+
+                #### 进阶配置
+
+                新增一个配置文件来实现一些如开机自启的功能。
+
+                ```
+                # 下载 Halo 官方的 halo.service 模板
+                sudo curl -o /etc/systemd/system/halo.service --create-dirs https://dl.halo.run/config/halo.service
+                ```
+
+                修改文件
+
+                ```
+                # 修改 halo.service
+                sudo vim /etc/systemd/system/halo.service
+                ```
+
+                打开如下
+
+                ```
+                [Unit]
+                Description=Halo Service
+                Documentation=https://halo.run
+                After=network-online.target
+                Wants=network-online.target
+
+                [Service]
+                User=halo
+                Type=simple
+                ExecStart=/usr/bin/java -server -Xms256m -Xmx256m -jar YOUR_JAR_PATH
+                ExecStop=/bin/kill -s QUIT $MAINPID
+                Restart=always
+                StandOutput=syslog
+
+                StandError=inherit
+
+                [Install]
+                WantedBy=multi-user.target
+                ```
+
+                参数：
+
+                - `-Xms256m`：为 JVM 启动时分配的内存，请按照服务器的内存做适当调整，512 M 内存的服务器推荐设置为 128，1G 内存的服务器推荐设置为 256，默认为 256。
+                - `-Xmx256m`：为 JVM 运行过程中分配的最大内存，配置同上。
+                - `YOUR_JAR_PATH`：Halo 安装包的绝对路径,使用`pwd`命令查看，如`/www/wwwroot/halo-latest.jar`。
+
+                提示：
+
+                - systemd 中的所有路径均要写为绝对路径，另外，`~` 在 systemd 中也是无法被识别的，所以请不要写成类似 `~/halo-latest.jar` 这种路径。
+                - 如何检验是否修改正确：重新运行Halo，查看是否有预期输出。
+
+                ```
+                # 修改 service 文件之后需要刷新 Systemd
+                sudo systemctl daemon-reload
+
+                # 使 Halo 开机自启
+                sudo systemctl enable halo
+
+                # 启动 Halo
+                sudo service halo start
+
+                # 重启 Halo
+                sudo service halo restart
+
+                # 停止 Halo
+                sudo service halo stop
+
+                # 查看 Halo 的运行状态
+                sudo service halo status
+                ```
+
+                完成以上操作以后即可通过在浏览器地址栏中输入`你的服务器IP地址:端口号（默认为8090）`访问了。通过后续操作实现从域名访问Halo。
+                ***
+                ### 配置域名访问
+
+
+
+                - 使用 Nginx 进行反向代理
+                - 或者使用 Caddy 进行反向代理
+
+                以上两种方法任选其一即可。
+                ***
+                ### 使用 Nginx 进行反向代理
+
+
+
+                #### 安装Nginx
+
+                ```
+                # 添加 Nginx 源
+                sudo rpm -Uvh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm
+
+                # 安装 Nginx
+                sudo yum install -y nginx
+
+                # 启动 Nginx
+                sudo systemctl start nginx.service
+
+                # 设置开机自启 Nginx
+                sudo systemctl enable nginx.service
+                ```
+
+                #### 配置Nginx
+
+                ```
+                # 下载 Halo 官方的 Nginx 配置模板
+                curl -o /etc/nginx/conf.d/halo.conf --create-dirs https://dl.halo.run/config/nginx.conf
+                ```
+
+                下载完成后，对其进行修改
+
+                ```
+                # 使用 vim 编辑 halo.conf
+                vim /etc/nginx/conf.d/halo.conf
+                ```
+
+                打开如下
+
+                ```
+                server {
+                listen 80;
+
+                server_name example.com www.example.com;
+
+                location / {
+                proxy_set_header HOST $host;
+                proxy_set_header X-Forwarded-Proto $scheme;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+                proxy_pass http://127.0.0.1:8090/;
+                }
+                }
+                ```
+
+                > 请把`example.com`改为自己的域名
+
+                修改完成后
+
+                ```
+                # 检查配置是否有误
+                sudo nginx -t
+
+                # 重载 Nginx 配置
+                sudo nginx -s reload
+                ```
+
+                #### 配置SSL证书
+
+                以下是自动申请证书的方法，如果你自备了证书，请查阅相关教程。
+
+                ```
+                # 安装 certbot 以及 certbot nginx 插件
+                sudo yum install certbot python2-certbot-nginx -y
+
+                # 执行配置，中途会询问你的邮箱，如实填写即可
+                sudo certbot --nginx
+
+                # 自动续约
+                sudo certbot renew --dry-run
+                ```
+
+                到这里，关于 Nginx 的配置也就完成了，现在你可以访问一下自己的域名，并进行 Halo 的初始化了。
+
+                在设置了反向代理之后，请一定记得去 Halo 的管理端设置一下正确的博客地址，否则可能会造成资源获取不成功。
+                ***
+                ### 或者使用 Caddy 进行反向代理
+
+
+
+                `Caddy` 是一款使用 `Go` 语言开发的 `Web` 服务器。其配置更为简洁，并可以自动申请及配置 SSL 证书（推荐）。
+
+                #### 安装Caddy
+
+                ```
+                # 安装 Caddy 软件包
+                yum install caddy -y
+                ```
+
+                #### 配置Caddy
+
+                ```
+                # 下载 Halo 官方的 Caddy 配置模板
+                curl -o /etc/caddy/conf.d/Caddyfile.conf --create-dirs https://dl.halo.run/config/Caddyfile
+                ```
+
+                下载完成之后，我们还需要对其进行修改。
+
+                ```
+                # 使用 vim 编辑 Caddyfile
+                vim /etc/caddy/conf.d/Caddyfile.conf
+                ```
+
+                打开以后
+
+                ```
+                https://www.simple.com {
+                gzip
+                tls xxxx@xxx.xx
+                proxy / localhost:port {
+                transparent
+                }
+                }
+                ```
+
+                1. 把 `https://www.simple.com` 改为自己的域名。
+                2. `tls` 后面的 `xxxx@xxx.xx` 改为自己的邮箱地址，这是用于自动申请 SSL 证书用的。需要注意的是，不需要你自己配置 SSL 证书，而且会自动帮你续签。
+                3. `localhost:port` 请将 `port` 修改为 Halo 的运行端口，默认端口为 8090。
+
+                修改完成后启动Caddy服务即可。
+
+                ```
+                # 开启自启 Caddy 服务
+                systemctl enable caddy
+
+                # 启动 Caddy
+                service caddy start
+
+                # 停止运行 Caddy
+                service caddy stop
+
+                # 重启 Caddy
+                service caddy restart
+
+                # 查看 Caddy 运行状态
+                service caddy status
+                ```
+
+                如果 Caddy 启动出现诸如 `[/usr/lib/systemd/system/caddy.service:23] Unknown lvalue 'AmbientCapabilities' in
+                section
+                'Service'` 这样的问题，请使用 `yum update -y` 更新系统。然后再使用 `service caddy restart` 重启，已知 `CentOS 7.3` 会出现该问题。
+
+                #### 进阶设置
+
+                多网址重定向到主网址，比如访问 `simple.com` 跳转到 `www.simple.com` 应该怎么做呢？
+
+                ```
+                # 使用 vim 编辑 Caddyfile
+                vim /etc/caddy/conf.d/Caddyfile.conf
+                ```
+
+                打开之后我们在原有的基础上添加以下配置
+
+                ```
+                https://simple.com {
+                redir https://www.simple.com{url}
+                }
+                ```
+
+                将 `https://simple.com` 和 `https://www.simple.com{url}` 修改为自己需要的网址就行了，比如我要求访问 `example.com `跳转到
+                `www.example.com`，完整的配置如下：
+
+                ```
+                https://example.com {
+                redir https://www.example.com {url}
+                }
+
+                https://www.example.com {
+                gzip
+                tls i@example.com
+                proxy / localhost:8090 {
+                transparent
+                }
+                }
+                ```
+
+                最后我们重启 `Caddy` 即可。
+
+                `service caddy restart`
+
+                到这里，关于 `Caddy` 反向代理的配置也就完成了，现在你可以访问一下自己的域名，并进行 `Halo` 的初始化了。
+
+                在设置了反向代理之后，请一定记得去 Halo 的管理端设置一下正确的博客地址，否则可能会造成资源获取不成功。
+                ***
+                ### 更新Halo
+
+
+
+                ```
+                # 备份数据
+                cp -r ~/.halo ~/.halo.bak
+
+                # 备份旧的安装包
+                mv halo-latest.jar halo-latest.jar.bak
+
+                # 下载最新的 Halo 安装包，{{version}} 为版本号，不带 v，更多下载地址请访问 https://halo.run/archives/download.html
+                wget https://dl.halo.run/release/halo-{{version}}.jar -O halo-latest.jar
+
+                # 测试是否能够正常启动
+                java -jar halo-latest.jar
+
+                # 重启应用
+                service halo restart
+                ```
+                ***
+
+            </article>
+        </div>
+        <!-- 置顶按钮 -->
+        <button type="button" onclick="backTop();" class="home iconfont">&#xe648;</button>
+    </section>
+
+    <!-- 评论模块 -->
+    <section class="comment w">
+        <form action="" class="submit_wrapper">
+            <div class="info">
+                <input type="text" required="required" placeholder="昵称/ID *必填">
+                <input type="text" required="required" placeholder="邮箱 *必填">
+            </div>
+            <div class=" comm">
+                <textarea name="" id="" placeholder="看到这里了，留下一句评论吧！" required="required"></textarea>
+            </div>
+            <input type="submit" value="提交" class="submit">
+        </form>
+        <div class="comments">
+            <div class="a_comment">
+                <h4 class="com_id">Name</h4>
+                <i class="com_date">2020.9.27</i>
+                <p class="com_content">
+                    这是一条评论。这是一条评论。这是一条评论。这是一条评论。
+                    这是一条评论。这是一条评论。这是一条评论。这是一条评论。
+                    这是一条评论。这是一条评论。这是一条评论。这是一条评论。
+                    这是一条评论。这是一条评论。这是一条评论。这是一条评论。
+                    这是一条评论。这是一条评论。这是一条评论。这是一条评论。
+                    这是一条评论。这是一条评论。这是一条评论。这是一条评论。
+                    这是一条评论。这是一条评论。这是一条评论。这是一条评论。
+                </p>
+            </div>
+            <div class="a_comment">
+                <h4 class="com_id">Name</h4>
+                <i class="com_date">2020.9.27</i>
+                <p class="com_content">
+                    这是一条评论。这是一条评论。这是一条评论。这是一条评论。
+                    这是一条评论。这是一条评论。这是一条评论。这是一条评论。
+                    这是一条评论。这是一条评论。这是一条评论。这是一条评论。
+                    这是一条评论。这是一条评论。这是一条评论。这是一条评论。
+                    这是一条评论。这是一条评论。这是一条评论。这是一条评论。
+                    这是一条评论。这是一条评论。这是一条评论。这是一条评论。
+                    这是一条评论。这是一条评论。这是一条评论。这是一条评论。
+                </p>
+            </div>
+            <div class="a_comment">
+                <h4 class="com_id">Name</h4>
+                <i class="com_date">2020.9.27</i>
+                <p class="com_content">
+                    这是一条评论。这是一条评论。这是一条评论。这是一条评论。
+                    这是一条评论。这是一条评论。这是一条评论。这是一条评论。
+                    这是一条评论。这是一条评论。这是一条评论。这是一条评论。
+                    这是一条评论。这是一条评论。这是一条评论。这是一条评论。
+                    这是一条评论。这是一条评论。这是一条评论。这是一条评论。
+                    这是一条评论。这是一条评论。这是一条评论。这是一条评论。
+                    这是一条评论。这是一条评论。这是一条评论。这是一条评论。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 底部模块 -->
+    <footer class="w">
+        <div class="footer_info">
+            <p class="copyright">
+                2020&nbsp;&copy;&nbsp;<a href="#">Megrax</a>
+            </p>
+            <p class="beian">
+                <a href="https://beian.miit.gov.cn/">浙ICP备20017337号</a>
+            </p>
+        </div>
+    </footer>
+</body>
+
+</html>

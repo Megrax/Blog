@@ -2,22 +2,32 @@
   font-family: 'Zilla Slab Regular';
   font-style: normal;
   font-weight: 400;
-  src: url('../fonts/ZillaSlab-Regular.woff2') format('woff2');
+  src: url('../fonts/ZillaSlab/ZillaSlab-Regular.woff2') format('woff2');
 }
 
 @font-face {
   font-family: 'Zilla Slab SemiBold';
   font-style: normal;
   font-weight: 400;
-  src: url('../fonts/ZillaSlab-SemiBold.woff2') format('woff2');
+  src: url('../fonts/ZillaSlab/ZillaSlab-SemiBold.woff2') format('woff2');
 }
 
 @font-face {
     font-family: 'NotoSerifSC-Regular';
     font-style: normal;
     font-weight: 400;
-    src: url(../fonts/NotoSerifSC-Regular.otf) format('OpenType');
+    src: url(../fonts/NotoSerifSC/NotoSerifSC-Regular.otf) format('OpenType');
 }
+
+@font-face {
+    font-family: 'iconfont';
+    src: url('../fonts/iconfont/');
+    src: url('../fonts/iconfont/?#iefix') format('embedded-opentype'),
+        url('../fonts/iconfont/iconfont.woff2') format('woff2'),
+        url('../fonts/iconfont/iconfont.woff') format('woff'),
+        url('../fonts/iconfont/iconfont.ttf') format('truetype'),
+        url('../fonts/iconfont/iconfont.svg#iconfont') format('svg');
+  }
 
 /* 所有标签的内外边距清零 */
 * {
@@ -105,4 +115,12 @@ body {
   }
   :-ms-input-placeholder {
     color: #ccc;
+  }
+
+  .iconfont {
+    font-family: "iconfont" !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
