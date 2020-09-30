@@ -13,7 +13,13 @@ section .left {
     width: 110px;
     height: 360px;
     border: 1px solid #ccc;
-    box-shadow: 0px 1px 6px rgba(0, 0, 0, .3);
+    border-radius: 8px;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, .3);
+    transition: all,1s;
+}
+
+section .left:hover {
+    box-shadow: 0px 1px 8px rgba(0, 0, 0, .3);
 }
 
 section .left ul li {
@@ -43,11 +49,16 @@ section .home {
     height: 40px;
     background-color: #fff;
     border-radius: 50%;
-    box-shadow: 0px 1px 6px rgba(0, 0, 0, .3);
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, .3);
     cursor: pointer;
     font-size: 20px;
     text-align: center;
     line-height: 40px;
+    transition: all,1s;
+}
+
+section .home:hover {
+    box-shadow: 0px 1px 8px rgba(0, 0, 0, .3);
 }
 
 .comment .submit_wrapper {
@@ -117,11 +128,11 @@ section .home {
     background-color: #fff;
     box-shadow: 0px 1px 3px rgba(0, 0, 0, .3);
     border-radius: 10px;
+    transition: all,1s;
 }
 
 .comment .a_comment:hover {
     box-shadow: 0px 1px 8px rgba(0, 0, 0, .3);
-    transition: all,1s;
 }
 
 .comment .a_comment .com_id {
