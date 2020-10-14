@@ -1,0 +1,136 @@
+@font-face {
+    font-family: 'NotoSerifSC-Regular';
+    font-style: normal;
+    font-weight: 400;
+    src: url(../fonts/NotoSerifSC/NotoSerifSC-Regular.otf) format('OpenType');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+::-webkit-input-placeholder {
+    color: #ccc;
+  }
+  :-moz-placeholder {/* Firefox 18- */
+    color: #ccc;
+  }
+  ::-moz-placeholder{/* Firefox 19+ */
+   color: #ccc;
+  }
+  :-ms-input-placeholder {
+    color: #ccc;
+  }
+
+button,
+input,
+textarea {
+    font-family: NotoSerifSC-Regular, Microsoft YaHei, Helvetica, Heiti SC, tahoma, arial, Hiragino Sans GB, "\5B8B\4F53", sans-serif;
+    border: 0;
+    outline: none;
+}
+
+html {
+    background-color: #fff;
+}
+
+.wrapper {
+    margin: 160px auto;
+    width: 884px;
+}
+
+.loginBox {
+    background-color: #fff;
+    /*上divcolor*/
+    border: 1px solid #BfD6E1;
+    border-radius: 10px;
+    color: #444;
+    font-size: 14px;
+    margin: 0 auto;
+    width: 388px
+}
+
+.loginBox:HOVER {
+    box-shadow: 0px 1px 8px rgba(0, 0, 0, .3);
+    transition: all,1s;
+}
+
+.loginBox .loginBoxCenter {
+    border-bottom: 1px solid #DDE0E8;
+    padding: 24px;
+}
+
+.loginBox .loginBoxCenter p {
+    margin-bottom: 10px
+}
+
+.loginBox .loginBoxButtons {
+    /*下divcolor*/
+    border-top: 0px solid #FFF;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    line-height: 28px;
+    overflow: hidden;
+    padding: 20px 24px;
+    vertical-align: center;
+    filter: alpha(Opacity=80);
+    -moz-opacity: 0.5;
+    opacity: 0.5;
+}
+
+.loginBox .loginInput {
+    border: 1px solid #D2D9dC;
+    border-radius: 2px;
+    color: #444;
+    font-size: 12px;
+    padding: 8px 14px;
+    margin-bottom: 8px;
+    width: 310px;
+    outline: none;
+    border-radius: 10px;
+}
+
+.loginBox .loginInput:FOCUS {
+    border: 1px solid orange;
+}
+
+.loginBox .loginBtn {
+    background-image: -moz-linear-gradient(to bottom, blue, #ccc);
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    box-shadow: inset rgba(255, 255, 255, 0.6) 0 1px 1px, rgba(0, 0, 0, 0.1) 0 1px 1px;
+    color: #444;
+    cursor: pointer;
+    float: right;
+    font: bold 14px 'NotoSerifSC-Regular';
+    padding: 10px 50px;
+}
+
+.loginBox .loginBtn:HOVER {
+    background-image: -moz-linear-gradient(to top, blue, #ccc);
+    color: #000;
+}
+
+.loginBox a.forgetLink {
+    color: #ABABAB;
+    cursor: pointer;
+    float: right;
+    font: 11px/20px 'NotoSerifSC-Regular';
+    text-decoration: none;
+    vertical-align: middle;
+}
+
+.loginBox a.forgetLink:HOVER {
+    color: #000000;
+    text-decoration: none;
+}
+
+.loginBox input#remember {
+    vertical-align: middle;
+}
+
+.loginBox label[for="remember"] {
+    font: 11px 'NotoSerifSC-Regular';
+}
