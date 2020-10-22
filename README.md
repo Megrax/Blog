@@ -1,1 +1,1 @@
-My blog site plan.
+My blog.
