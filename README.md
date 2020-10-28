@@ -1,1 +1,1 @@
-### A blog built by express.js.
+### A blog built with express.js.
