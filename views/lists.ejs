@@ -2,15 +2,8 @@
 <html lang="zh-CH">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Megrax's Blog</title>
-    <link rel="stylesheet" href="./css/base.css">
-    <link rel="stylesheet" href="./css/header.css">
-    <link rel="stylesheet" href="./css/main.css">
-    <link rel="stylesheet" href="./css/footer.css">
-    <link rel="stylesheet" href="./css/lists.css">
-    <script src="js/main.js"></script>
+    <%- include('./partials/head.ejs') %>
+    <link rel="stylesheet" href="css/lists.css">
 </head>
 
 <body>
@@ -25,15 +18,7 @@
     </header>
 
     <!-- 中部导航栏模块 -->
-    <nav class="w clearfix">
-        <ul>
-            <li><a href="index.html">首页</a></li>
-            <li><a href="lists.html">Lists</a></li>
-            <li><a href="#">Tags</a></li>
-            <li><a href="#">Links</a></li>
-            <li><a href="#">About Me</a></li>
-        </ul>
-    </nav>
+    <%- include('./partials/top_nav.ejs') %>
 
     <!-- 主体模块 -->
     <section class="w clearfix">
@@ -76,16 +61,7 @@
     </section>
 
     <!-- 底部模块 -->
-    <footer class="w">
-        <div class="footer_info">
-            <p class="copyright">
-                2020&nbsp;&copy;&nbsp;<a href="#">Megrax</a>
-            </p>
-            <p class="beian">
-                <a href="https://beian.miit.gov.cn/">浙ICP备20017337号</a>
-            </p>
-        </div>
-    </footer>
+    <%- include('./partials/footer.ejs'); %>
 </body>
 
 </html>
