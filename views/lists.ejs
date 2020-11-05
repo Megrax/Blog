@@ -3,7 +3,7 @@
 
 <head>
     <%- include('./partials/head.ejs') %>
-    <link rel="stylesheet" href="css/lists.css">
+    <link rel="stylesheet" href="/css/lists.css">
 </head>
 
 <body>
@@ -13,7 +13,7 @@
             <a href="index.html">Megrax's Blog</a>
         </h1>
         <h1 class="lists">
-            <a href="lists.html">Lists</a>
+            <a href="/posts">Lists</a>
         </h1>
     </header>
 
@@ -24,40 +24,20 @@
     <section class="w clearfix">
         <!-- 博文列表展示 -->
         <div class="posts w">
+
+            <% posts_list.forEach(function(post) { %>
             <div class="a_post">
-                <h2><a href="posts/post.html">这是一篇博文</a></h2>
-                <div class="date">2020.9.27</div>
+                <h2><a href="#"><%= post.ptitle %></a></h2>
+                <div class="date"><%= post.pcreated_at %></div>
             </div>
-            <div class="a_post">
-                <h2><a href="posts/post.html">这是一篇博文</a></h2>
-                <div class="date">2020.9.27</div>
-            </div>
-            <div class="a_post">
-                <h2><a href="posts/post.html">这是一篇博文</a></h2>
-                <div class="date">2020.9.27</div>
-            </div>
-            <div class="a_post">
-                <h2><a href="posts/post.html">这是一篇博文</a></h2>
-                <div class="date">2020.9.27</div>
-            </div>
-            <div class="a_post">
-                <h2><a href="posts/post.html">这是一篇博文</a></h2>
-                <div class="date">2020.9.27</div>
-            </div>
-            <div class="a_post">
-                <h2><a href="posts/post.html">这是一篇博文</a></h2>
-                <div class="date">2020.9.27</div>
-            </div>
-            <div class="a_post">
-                <h2><a href="posts/post.html">这是一篇博文</a></h2>
-                <div class="date">2020.9.27</div>
-            </div>
-            <div class="a_post">
-                <h2><a href="posts/post.html">这是一篇博文</a></h2>
-                <div class="date">2020.9.27</div>
-            </div>
+            <% }); %>
+
+
+
+
             <!-- 置顶按钮 -->
             <button type="button" onclick="backTop();" class="home iconfont clearfix">&#xe648;</button>
+        </div>
     </section>
 
     <!-- 底部模块 -->

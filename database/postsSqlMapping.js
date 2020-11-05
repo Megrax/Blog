@@ -3,6 +3,7 @@ let posts = {
     update: 'UPDATE posts SET ptitle=?, pcontent=?, psummary=?, ppic=?, pcategory=?,pcreated_at=? WHERE pid=?',
     delete: 'DELETE FROM posts where pid=?',
     queryById: 'SELECT * FROM posts WHERE pid=?',
+    queryPtitleAndTime: 'SELECT ptitle, pcreated_at FROM posts',
     queryAll: 'SELECT * FROM posts'
 };
 

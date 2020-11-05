@@ -1,5 +1,5 @@
 //mysql配置文件
-mysql = {
+const mysql = {
 
     host: "localhost", //这是数据库的地址
     user: "root", //需要用户的名字
