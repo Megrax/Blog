@@ -5,8 +5,6 @@
     <%- include('./partials/head.ejs') %>
 </head>
 
-
-
 <body>
     <!-- 头部模块 -->
     <header>
@@ -60,6 +58,7 @@
             <input type="submit" value="提交" class="submit">
         </form>
         <div class="comments">
+            <% comment_info.forEach(function(comment) { %>
             <div class="a_comment">
                 <h4 class="com_id"><%= comment.cperson %></h4>
                 <i class="com_date"><%= comment.ccreated_at %></i>
@@ -67,6 +66,7 @@
                     <%= comment.ccontent %>
                 </p>
             </div>
+            <% }); %>
         </div>
     </section>
 

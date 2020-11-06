@@ -18,6 +18,9 @@ exports.post_show = (req, res) => {
             return result;
         })
         .then(function (result) {
-            res.render('../views/post', { post_info: result });
+            res.render('../views/post', {
+                post_info: result[0],
+                comment_info: result[1]
+            });
         });
 };
