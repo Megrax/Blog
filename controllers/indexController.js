@@ -1,5 +1,10 @@
-const post = require('../database/postsSqlMapping');
+const postDao = require('../database/postsDao');
 
 exports.index = (req, res) => {
-    res.render("index.ejs", { title: "<h4>express</h4>" });
+    postDao.pass_posts_asJson().then(function (result) {
+        return result;
+    })
+        .then(function (result) {
+            res.render('../views/index', { posts_list: result });
+        });
 };

@@ -10,7 +10,7 @@
     <!-- 头部模块 -->
     <header class="clearfix">
         <h1>
-            <a href="index.html">Megrax's Blog</a>
+            <a href="/index">Megrax's Blog</a>
         </h1>
         <h1 class="lists">
             <a href="/posts">Lists</a>
@@ -26,14 +26,12 @@
         <div class="posts w">
 
             <% posts_list.forEach(function(post) { %>
+            <% let post_link = "/posts/" + post.pid %>
             <div class="a_post">
-                <h2><a href="#"><%= post.ptitle %></a></h2>
+                <h2><a href="<%= post_link %>"><%= post.ptitle %></a></h2>
                 <div class="date"><%= post.pcreated_at %></div>
             </div>
             <% }); %>
-
-
-
 
             <!-- 置顶按钮 -->
             <button type="button" onclick="backTop();" class="home iconfont clearfix">&#xe648;</button>
