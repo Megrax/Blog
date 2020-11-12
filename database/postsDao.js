@@ -1,13 +1,32 @@
 let mysql = require('mysql');
-let $conf = require('../conf/mysql');
 let $sql = require('./postsSqlMapping');
+let sqls = 'SELECT * FROM posts WHERE pid=?;SELECT * FROM comments WHERE pid=?';
 
-let pool = mysql.createPool($conf);
+const pool1 = mysql.createPool(
+    {
+        host: "localhost",
+        user: "root",
+        password: "123456",
+        database: "Blog",
+        port: 3306
+    }
+);
+
+const pool2 = mysql.createPool(
+    {
+        host: "localhost",
+        user: "root",
+        password: "123456",
+        database: "Blog",
+        port: 3306,
+        multipleStatements: true //开启多语句查询
+    }
+);
 
 module.exports = {
     pass_posts_asJson: function (res) {
         return new Promise(function (resolve, reject) {
-            pool.getConnection(function (err, connection) {
+            pool1.getConnection(function (err, connection) {
                 if (err) {
                     reject("there is a mistake");
                 }
@@ -28,18 +47,17 @@ module.exports = {
     },
     pass_single_asJson: function (req, res) {
         return new Promise(function (resolve, reject) {
-            pool.getConnection(function (err, connection) {
+            pool2.getConnection(function (err, connection) {
                 if (err) {
                     reject("there is a mistake");
                 }
                 let promise = new Promise(function (resolve, reject) {
-                    connection.query($sql.queryById, req.params.pid, function (err, queryResult) {
+                    connection.query(sqls, [req.params.pid, req.params.pid], function (err, queryResult) {
                         if (err) {
                             reject("there is a mistake");
                         }
                         let result = JSON.parse(JSON.stringify(queryResult));
                         connection.release();
-                        console.log(result[0].pcontent);
                         resolve(result);
                     });
                 }).catch(new Function());
