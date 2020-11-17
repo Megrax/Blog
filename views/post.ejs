@@ -1,77 +1,97 @@
 <!DOCTYPE html>
 <html lang="zh-CH">
+	<head>
+		<%- include('./partials/head.ejs') %>
+	</head>
 
-<head>
-    <%- include('./partials/head.ejs') %>
-</head>
+	<body>
+		<!-- 头部模块 -->
+		<header>
+			<h1>
+				<a href="/index">Megrax's Blog</a>
+			</h1>
+		</header>
 
-<body>
-    <!-- 头部模块 -->
-    <header>
-        <h1>
-            <a href="/index">Megrax's Blog</a>
-        </h1>
-    </header>
+		<!-- 中部导航栏模块 -->
+		<nav class="w">
+			<ul>
+				<li><a href="/index">首页</a></li>
+				<li><a href="/posts">Lists</a></li>
+				<li><a href="#">Tags</a></li>
+				<li><a href="#">Links</a></li>
+				<li><a href="#">About Me</a></li>
+			</ul>
+		</nav>
 
-    <!-- 中部导航栏模块 -->
-    <nav class="w">
-        <ul>
-            <li><a href="/index">首页</a></li>
-            <li><a href="/posts">Lists</a></li>
-            <li><a href="#">Tags</a></li>
-            <li><a href="#">Links</a></li>
-            <li><a href="#">About Me</a></li>
-        </ul>
-    </nav>
+		<!-- 主体模块 -->
+		<section class="w clearfix">
+			<!-- 边栏模块 -->
+			<aside class="left">
+				<ul>
+					<li><a href="#">Tech</a></li>
+					<li><a href="#">Life</a></li>
+					<li><a href="#">Literature</a></li>
+					<li>访问信息统计</li>
+				</ul>
+			</aside>
+			<div class="article_wrapper">
+				<!-- 文章部分 -->
+				<article><%= post_info[0].pcontent %></article>
+			</div>
+			<!-- 置顶按钮 -->
+			<button type="button" onclick="backTop();" class="home iconfont">
+				&#xe648;
+			</button>
+		</section>
 
-    <!-- 主体模块 -->
-    <section class="w clearfix">
-        <!-- 边栏模块 -->
-        <aside class="left">
-            <ul>
-                <li><a href="#">Tech</a></li>
-                <li><a href="#">Life</a></li>
-                <li><a href="#">Literature</a></li>
-                <li>访问信息统计</li>
-            </ul>
-        </aside>
-        <div class="article_wrapper">
-            <!-- 文章部分 -->
-            <article>
-                <%= post_info[0].pcontent %>
-            </article>
-        </div>
-        <!-- 置顶按钮 -->
-        <button type="button" onclick="backTop();" class="home iconfont">&#xe648;</button>
-    </section>
+		<!-- 评论模块 -->
+		<section class="comment w">
+			<form
+				action="/posts/add_comment"
+				class="submit_wrapper"
+				method="POST"
+			>
+				<div class="info">
+					<input
+						type="text"
+						required="required"
+						placeholder="昵称/ID *必填"
+						name="cperson"
+					/>
+					<input
+						type="text"
+						required="required"
+						placeholder="邮箱 *必填"
+						name="cemail"
+					/>
+				</div>
+				<div class="comm">
+					<textarea
+						id="ccontent"
+						name="ccontent"
+						placeholder="看到这里了，留下一句评论吧！"
+						required="required"
+					></textarea>
+				</div>
+				<input
+					type="hidden"
+					name="pid"
+					value="<%= post_info[0].pid %>"
+				/>
+				<input type="submit" value="提交" class="submit" />
+			</form>
+			<div class="comments">
+				<% comment_info.forEach(function(comment) { %>
+				<div class="a_comment">
+					<h4 class="com_id"><%= comment.cperson %></h4>
+					<i class="com_date"><%= comment.ccreated_at %></i>
+					<p class="com_content"><%= comment.ccontent %></p>
+				</div>
+				<% }); %>
+			</div>
+		</section>
 
-    <!-- 评论模块 -->
-    <section class="comment w">
-        <form action="" class="submit_wrapper">
-            <div class="info">
-                <input type="text" required="required" placeholder="昵称/ID *必填">
-                <input type="text" required="required" placeholder="邮箱 *必填">
-            </div>
-            <div class=" comm">
-                <textarea name="" id="" placeholder="看到这里了，留下一句评论吧！" required="required"></textarea>
-            </div>
-            <input type="submit" value="提交" class="submit">
-        </form>
-        <div class="comments">
-            <% comment_info.forEach(function(comment) { %>
-            <div class="a_comment">
-                <h4 class="com_id"><%= comment.cperson %></h4>
-                <i class="com_date"><%= comment.ccreated_at %></i>
-                <p class="com_content">
-                    <%= comment.ccontent %>
-                </p>
-            </div>
-            <% }); %>
-        </div>
-    </section>
-
-    <!-- 底部模块 -->
-    <%- include('./partials/footer.ejs'); %>
-</body>
-
+		<!-- 底部模块 -->
+		<%- include('./partials/footer.ejs'); %>
+	</body>
 </html>

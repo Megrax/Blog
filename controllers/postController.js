@@ -1,4 +1,5 @@
 const postDao = require('../database/postsDao');
+const commentsDao = require('../database/commentsDao');
 
 //显示博文列表
 exports.post_list = (req, res) => {
@@ -23,4 +24,8 @@ exports.post_show = (req, res) => {
                 comment_info: result[1]
             });
         });
+};
+
+exports.add_comment = (req) => {
+    commentsDao.add_comm(req);
 };

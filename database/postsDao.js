@@ -1,6 +1,6 @@
 let mysql = require('mysql');
 let $sql = require('./postsSqlMapping');
-let sqls = 'SELECT * FROM posts WHERE pid=?;SELECT * FROM comments WHERE pid=?';
+let sqls = 'SELECT * FROM posts WHERE pid=?;SELECT cid,pid,cperson,ccontent,ccreated_at FROM comments WHERE pid=?';
 
 const pool1 = mysql.createPool(
     {
@@ -36,7 +36,6 @@ module.exports = {
                             reject("there is a mistake");
                         }
                         let result = JSON.parse(JSON.stringify(queryResult));
-                        // console.log(result);
                         connection.release();
                         resolve(result);
                     });
