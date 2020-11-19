@@ -1,26 +1,30 @@
 footer {
-    position: relative;
-    top: 380px;
-    height: 90px;
-    /* background-color: purple; */
-    border: 1px solid #ccc;
-    box-shadow: 0px 3px 6px rgba(0, 0, 0, .3);
+	position: relative;
+	top: 380px;
+	height: 90px;
+	/* background-color: purple; */
+	/* border: 1px solid #ccc;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, .3); */
 }
 
 .footer_info {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 200px;
-    height: 80px;
-    background-color: #fff;
-    text-align: center;
-    font-family: 'Zilla Slab Regular';
-    color: #b9b9b9;
-    font-size: 16px;
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 200px;
+	height: 80px;
+	background-color: #fff;
+	text-align: center;
+	font-family: "Zilla Slab Regular";
+	color: #b9b9b9;
+	font-size: 16px;
 }
 
 .footer_info a {
-    color: #b9b9b9;
+	color: #b9b9b9;
+}
+
+.footer_info a:hover {
+	color: #061a40;
 }

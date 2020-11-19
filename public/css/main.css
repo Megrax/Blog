@@ -1,155 +1,179 @@
+.tag_area {
+	width: 670px;
+	padding: 10px;
+	padding-top: 30px;
+	margin-top: 50px;
+	margin-left: 290px;
+	border-top: 3px dashed #ccc;
+	/* background-color: pink; */
+}
+
+.tag {
+	display: inline-block;
+	height: 100%;
+	padding: 3px 8px;
+	margin: 3px 0;
+	border: 1px solid #0353a4;
+	border-radius: 10px;
+	background-color: #fefcfd;
+	color: #0353a4;
+}
+
 section {
-    position: relative;
-    top: 40px;
-    padding-bottom: 30px;
-    /* background-color: springgreen; */
+	position: relative;
+	top: 40px;
+	padding-bottom: 30px;
+	/* background-color: springgreen; */
 }
 
 section .left {
-    z-index: 100;
-    float: left;
-    position: fixed;
-    top: 180px;
-    width: 110px;
-    height: 360px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0px 1px 3px rgba(0, 0, 0, .3);
-    transition: all,1s;
+	z-index: 100;
+	float: left;
+	position: fixed;
+	top: 180px;
+	width: 110px;
+	height: 360px;
+	border: 1px solid #ccc;
+	background-color: #fff;
+	border-radius: 8px;
+	box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);
+	transition: all, 1s;
 }
 
 section .left:hover {
-    box-shadow: 0px 1px 8px rgba(0, 0, 0, .3);
+	box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.3);
 }
 
 section .left ul li {
-    height: 70px;
-    border-bottom: 1px solid #ccc;
-    line-height: 70px;
-    text-align: center;
-    font-size: 15px;
+	height: 70px;
+	border-bottom: 1px solid #ccc;
+	line-height: 70px;
+	text-align: center;
+	font-size: 15px;
 }
 
 section .left ul li:last-child {
-    border-bottom: none;
+	border-bottom: none;
 }
 
 section article {
-    float: left;
-    margin-left: 170px;
-    width: 830px;
+	float: left;
+	margin-left: 170px;
+	width: 830px;
 }
 
 section .home {
-    z-index: 100;
-    position: fixed;
-    right: 90px;
-    bottom: 110px;
-    width: 40px;
-    height: 40px;
-    background-color: #fff;
-    border-radius: 50%;
-    box-shadow: 0px 1px 3px rgba(0, 0, 0, .3);
-    cursor: pointer;
-    font-size: 20px;
-    text-align: center;
-    line-height: 40px;
-    transition: all,1s;
+	z-index: 100;
+	position: fixed;
+	right: 90px;
+	bottom: 110px;
+	width: 40px;
+	height: 40px;
+	background-color: #000;
+	color: #fff;
+	border-radius: 50%;
+	box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);
+	cursor: pointer;
+	font-size: 20px;
+	text-align: center;
+	line-height: 40px;
+	transition: all, 1s;
 }
 
 section .home:hover {
-    box-shadow: 0px 1px 8px rgba(0, 0, 0, .3);
+	box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.3);
 }
 
 article {
-    font-size: 20px;
+	font-size: 20px;
 }
 
 .comment .submit_wrapper {
-    position: relative;
-    margin: 0 auto;
-    width: 740px;
-    height: 280px;
-    /* background-color: yellow; */
-    border: 1px solid #ccc;
-    border-radius: 10px;
+	position: relative;
+	margin: 0 auto;
+	width: 740px;
+	height: 280px;
+	border: 1px solid #ccc;
+	border-radius: 10px;
 }
 
 .comment .info input {
-    width: 332px;
-    height: 57px;
-    font-size: 17px;
-    caret-color: #ccc;
-    border-bottom: 3px dashed #ccc;
-    padding: 3px;
+	width: 332px;
+	height: 57px;
+	font-size: 17px;
+	caret-color: #ccc;
+	background-color: #fff;
+	border-bottom: 3px dashed #ccc;
+	padding: 3px;
 }
 
 .comment .info input:focus {
-    border-bottom: 3px dashed orange;
+	border-bottom: 3px dashed orange;
 }
 
 .comment .info input:first-child {
-    margin-left: 31px;
+	margin-left: 31px;
 }
 
 .comment .comm textarea {
-    display: block;
-    margin-left: 31px;
-    padding: 3px;
-    resize: none;
-    border-bottom: 3px dashed #ccc;
-    caret-color: #ccc;
-    width: 668px;
-    height: 160px;
-    font-size: 17px;
+	display: block;
+	margin-left: 31px;
+	padding: 3px;
+	resize: none;
+	border-bottom: 3px dashed #ccc;
+	background-color: #fff;
+	caret-color: #ccc;
+	width: 668px;
+	height: 160px;
+	font-size: 17px;
 }
 
 .comment .comm textarea:focus {
-    border-bottom: 3px dashed orange;
+	border-bottom: 3px dashed orange;
 }
 
 .comment .submit {
-    position: absolute;
-    bottom: 13px;
-    right: 38px;
-    width: 72px;
-    height: 36px;
-    cursor: pointer;
-    font-size: 17px;
+	position: absolute;
+	bottom: 13px;
+	right: 38px;
+	width: 72px;
+	height: 36px;
+	cursor: pointer;
+	font-size: 17px;
 }
 
 .comment .comments {
-    margin-top: 20px;
-    padding: 10px 0;
-    /* background-color: red; */
+	margin-top: 20px;
+	padding: 10px 0;
+	/* background-color: red; */
 }
 
 .comment .a_comment {
-    margin: 20px auto;
-    width: 800px;
-    /* height: 220px; */
-    padding: 20px 20px;
-    background-color: #fff;
-    box-shadow: 0px 1px 3px rgba(0, 0, 0, .3);
-    border-radius: 10px;
-    transition: all,1s;
+	margin: 20px auto;
+	width: 800px;
+	/* height: 220px; */
+	padding: 20px 20px;
+	background-color: #fff;
+	box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);
+	border-radius: 10px;
+	transition: all, 1s;
 }
 
 .comment .a_comment:hover {
-    box-shadow: 0px 1px 8px rgba(0, 0, 0, .3);
+	box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.3);
 }
 
 .comment .a_comment .com_id {
-    display: inline;
-    font-size: 18px;
+	display: inline;
+	font-size: 18px;
 }
 
 .comment .a_comment .com_date {
-    float: right;
-    color: #bbb;
+	float: right;
+	color: #bbb;
 }
 
 .comment .a_comment .com_content {
-    margin: 20px 20px;
-    text-indent: 2em;
+	margin: 20px 20px;
+	text-indent: 2em;
 }
