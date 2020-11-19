@@ -21,11 +21,13 @@ exports.post_show = (req, res) => {
         .then(function (result) {
             res.render('../views/post', {
                 post_info: result[0],
-                comment_info: result[1]
+                comment_info: result[1],
+                tag_info: result[2]
             });
         });
 };
 
+//访客添加评论
 exports.add_comment = (req) => {
     commentsDao.add_comm(req);
 };

@@ -19,6 +19,11 @@
 	color: #0353a4;
 }
 
+.tag:hover {
+	border: 1px solid orange;
+	color: orange;
+}
+
 section {
 	position: relative;
 	top: 40px;

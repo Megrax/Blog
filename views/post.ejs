@@ -46,18 +46,11 @@
 
 		<!-- 标签模块 -->
 		<div class="w tag_area">
-			<a href="#"><div class="tag">Nginx</div></a>
-			<a href="#"><div class="tag">Nginx</div></a>
-			<a href="#"><div class="tag">Nginx</div></a>
-			<a href="#"><div class="tag">Nginx</div></a>
-			<a href="#"><div class="tag">Nginx</div></a>
-			<a href="#"><div class="tag">Nginx</div></a>
-			<a href="#"><div class="tag">Nginx</div></a>
-			<a href="#"><div class="tag">Nginx</div></a>
-			<a href="#"><div class="tag">Nginx</div></a>
-			<a href="#"><div class="tag">Nginx</div></a>
-			<a href="#"><div class="tag">Nginx</div></a>
-			<a href="#"><div class="tag">Nginx</div></a>
+			<% tag_info.forEach(function(tag) { %>
+			<a href="/tags/<%= tag.tid %>"
+				><div class="tag"><%= tag.ttitle %></div></a
+			>
+			<% }); %>
 		</div>
 
 		<!-- 评论模块 -->
