@@ -12,7 +12,8 @@
 				<a href="/index">Megrax's Blog</a>
 			</h1>
 			<h1 class="lists">
-				<a href="/tags">Tags</a>
+				<% let tag_link = "/tags/" + tag_info[0].tid %>
+				<a href="<%= tag_link %>"><%= tag_info[0].ttitle %></a>
 			</h1>
 		</header>
 
@@ -23,10 +24,11 @@
 		<section class="w clearfix">
 			<!-- 博文列表展示 -->
 			<div class="posts w">
-				<% tags_list.forEach(function(tag) { %> <% let tag_link =
-				"/tags/" + tag.tid %>
+				<% post_info.forEach(function(post) { %> <% let post_link =
+				"/posts/" + post.pid %>
 				<div class="a_post">
-					<h2><a href="<%= tag_link %>"><%= tag.ttitle %></a></h2>
+					<h2><a href="<%= post_link %>"><%= post.ptitle %></a></h2>
+					<div class="date"><%= post.pcreated_at %></div>
 				</div>
 				<% }); %>
 

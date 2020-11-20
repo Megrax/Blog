@@ -61,7 +61,6 @@ module.exports = {
                             reject("there is a mistake");
                         }
                         let result = JSON.parse(JSON.stringify(queryResult));
-                        console.log(result);
                         connection.release();
                         resolve(result);
                     });

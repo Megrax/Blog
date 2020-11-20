@@ -9,9 +9,22 @@ exports.tag_list = (req, res) => {
             return result;
         })
         .then(function (result) {
-            res.render('../views/tag', { tags_list: result });
+            res.render('../views/tag_list', {
+                tags_list: result
+            });
         });
 };
 
 //展示标签对应的博文
-exports.tag_rela = (req, res) => { res.send('未实现：标签对应的博文 GET'); };
+exports.tag_rela = (req, res) => { 
+    tagDao.send_single_tag(req)
+    .then(function (result) {
+        return result;
+    })
+    .then(function (result) {
+        res.render('../views/tag', {
+            tag_info: result[0],
+            post_info: result[1]
+        });
+    });
+};
