@@ -4,6 +4,7 @@ var path = require('path');
 let bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var cors = require('cors');
 const ejs = require("ejs");
 
 var indexRouter = require('./routes/index');
@@ -14,6 +15,9 @@ var postRouter = require('./routes/post');
 var tagRouter = require('./routes/tag');
 
 var app = express();
+
+//use middleware cors to solve cross-domain problems
+app.use(cors());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

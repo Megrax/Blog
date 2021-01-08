@@ -9,9 +9,7 @@ exports.tag_list = (req, res) => {
             return result;
         })
         .then(function (result) {
-            res.render('../views/tag_list', {
-                tags_list: result
-            });
+            res.json(result);
         });
 };
 

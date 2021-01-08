@@ -8,7 +8,7 @@ exports.post_list = (req, res) => {
             return result;
         })
         .then(function (result) {
-            res.render('../views/lists', { posts_list: result });
+            res.json(result);
         });
 };
 
@@ -19,15 +19,11 @@ exports.post_show = (req, res) => {
             return result;
         })
         .then(function (result) {
-            res.render('../views/post', {
-                post_info: result[0],
-                comment_info: result[1],
-                tag_info: result[2]
-            });
+            res.json(result);
         });
 };
 
 //访客添加评论
-exports.add_comment = (req) => {
+exports.add_comment = (req,res) => {
     commentsDao.add_comm(req);
 };

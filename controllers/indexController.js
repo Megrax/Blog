@@ -5,6 +5,6 @@ exports.index = (req, res) => {
         return result;
     })
         .then(function (result) {
-            res.render('../views/index', { posts_list: result });
+            res.json(result);
         });
 };
